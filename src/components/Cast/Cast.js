@@ -1,3 +1,12 @@
+import { useParams } from 'react-router-dom';
+
 export const Cast = () => {
-  return <h2>Cast</h2>;
+  const { movieId } = useParams();
+
+  return (
+    <div>
+      <h2>Cast</h2>
+      <p>{movieId}</p>
+    </div>
+  );
 };
