@@ -17,6 +17,17 @@ export async function fetchTrending() {
   }
 }
 
+export async function fetchQuery(query) {
+  const BASE_URL = 'https://api.themoviedb.org/3/search/movie';
+  searchParams.params.query = query;
+
+  try {
+    return await axios.get(BASE_URL, searchParams);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 export async function fetchDetails(id) {
   const BASE_URL = `https://api.themoviedb.org/3/movie/${id}`;
 

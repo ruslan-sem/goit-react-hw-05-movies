@@ -1,3 +1,5 @@
+import { fetchQuery } from 'services/fetchApi';
+
 export const Movies = () => {
   return (
     <main>
