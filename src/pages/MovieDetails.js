@@ -1,4 +1,4 @@
-import { useParams, Outlet, Link } from 'react-router-dom';
+import { useParams, Outlet, Link, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { fetchDetails } from 'services/fetchApi';
 
@@ -7,6 +7,8 @@ const imageUrl = 'https://image.tmdb.org/t/p/w200';
 export const MovieDetails = () => {
   const { movieId } = useParams();
   const [movie, setMovie] = useState({});
+  const location = useLocation();
+  const backLinkHref = location.state?.from ?? '/';
 
   useEffect(() => {
     fetchDetails(movieId).then(json => setMovie(json.data));
@@ -14,7 +16,7 @@ export const MovieDetails = () => {
 
   return (
     <main>
-      <Link to="/">&lt; Go back</Link>
+      <Link to={backLinkHref}>&lt; Go back</Link>
       <div style={{ display: 'flex', gap: '16px' }}>
         {movie.poster_path && (
           <img
@@ -40,10 +42,14 @@ export const MovieDetails = () => {
       <p>Additional information</p>
       <ul>
         <li>
-          <Link to="cast">Cast</Link>
+          <Link to="cast" state={{ from: backLinkHref }}>
+            Cast
+          </Link>
         </li>
         <li>
-          <Link to="reviews">Reviews</Link>
+          <Link to="reviews" state={{ from: backLinkHref }}>
+            Reviews
+          </Link>
         </li>
       </ul>
       <hr />
