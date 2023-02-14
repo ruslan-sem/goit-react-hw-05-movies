@@ -16,8 +16,8 @@ export const Reviews = () => {
         <p>We don't have any reviews for this movie.</p>
       ) : (
         <ul>
-          {reviews.map(review => (
-            <li key={review.id}>
+          {reviews.map((review, idx) => (
+            <li key={idx}>
               <h3>Author: {review.author}</h3>
               <p>{review.content}</p>
             </li>

@@ -26,7 +26,7 @@ export const MovieDetails = () => {
         )}
         <div>
           <h2>
-            {movie.original_title}
+            {movie.title}
             {movie.release_date && ` (${movie.release_date.slice(0, 4)})`}
           </h2>
           <p>User Score: {`${Math.round(movie.vote_average * 10)}%`}</p>

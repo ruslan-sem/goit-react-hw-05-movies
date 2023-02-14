@@ -15,16 +15,16 @@ export const Cast = () => {
   return (
     <div>
       <ul>
-        {casts.map(cast => (
-          <li key={cast.id}>
+        {casts.map((cast, idx) => (
+          <li key={idx}>
             {cast.profile_path && (
               <img
                 src={`${imageUrl}${cast.profile_path}`}
-                alt={cast.original_name}
+                alt={cast.name}
                 width="96"
               />
             )}
-            <p>{cast.original_name}</p>
+            <p>{cast.name}</p>
             <p>{cast.character}</p>
           </li>
         ))}
