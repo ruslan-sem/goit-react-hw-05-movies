@@ -1,10 +1,10 @@
 import { useParams, Outlet, Link, useLocation } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { fetchDetails } from 'services/fetchApi';
 
 const imageUrl = 'https://image.tmdb.org/t/p/w200';
 
-export const MovieDetails = () => {
+const MovieDetails = () => {
   const { movieId } = useParams();
   const [movie, setMovie] = useState({});
   const location = useLocation();
@@ -19,10 +19,7 @@ export const MovieDetails = () => {
       <Link to={backLinkHref}>&lt; Go back</Link>
       <div style={{ display: 'flex', gap: '16px' }}>
         {movie.poster_path && (
-          <img
-            src={`${imageUrl}${movie.poster_path}`}
-            alt={movie.original_title}
-          />
+          <img src={`${imageUrl}${movie.poster_path}`} alt={movie.title} />
         )}
         <div>
           <h2>
@@ -53,7 +50,11 @@ export const MovieDetails = () => {
         </li>
       </ul>
       <hr />
-      <Outlet />
+      <Suspense fallback={<div>Loading subpage...</div>}>
+        <Outlet />
+      </Suspense>
     </main>
   );
 };
+
+export default MovieDetails;

@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 
 const imageUrl = 'https://image.tmdb.org/t/p/w200';
 
-export const Cast = () => {
+const Cast = () => {
   const { movieId } = useParams();
   const [casts, setCasts] = useState([]);
 
@@ -32,3 +32,5 @@ export const Cast = () => {
     </div>
   );
 };
+
+export default Cast;
