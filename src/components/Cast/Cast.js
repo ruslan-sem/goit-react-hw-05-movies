@@ -1,6 +1,7 @@
 import { fetchCast } from 'services/fetchApi';
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import unknown from 'img/unknown.png';
 
 const imageUrl = 'https://image.tmdb.org/t/p/w200';
 
@@ -17,13 +18,13 @@ const Cast = () => {
       <ul>
         {casts.map((cast, idx) => (
           <li key={idx}>
-            {cast.profile_path && (
-              <img
-                src={`${imageUrl}${cast.profile_path}`}
-                alt={cast.name}
-                width="96"
-              />
-            )}
+            <img
+              src={
+                cast.profile_path ? `${imageUrl}${cast.profile_path}` : unknown
+              }
+              alt={cast.name}
+              width="96"
+            />
             <p>{cast.name}</p>
             <p>{cast.character}</p>
           </li>
